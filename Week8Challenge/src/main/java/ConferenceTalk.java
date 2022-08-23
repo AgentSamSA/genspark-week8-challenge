@@ -18,7 +18,7 @@ public class ConferenceTalk {
             this.duration = 5;
         } else {
             String[] titleArr = title.split("\\s+");
-            String minutes = titleArr[titleArr.length - 1].substring(0, 2);
+            String minutes = titleArr[titleArr.length - 1].replaceAll("[^0-9]", "");
             this.duration = Integer.parseInt(minutes);
         }
     }
