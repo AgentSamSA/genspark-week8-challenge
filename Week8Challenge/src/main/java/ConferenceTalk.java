@@ -1,5 +1,5 @@
 public class ConferenceTalk {
-    private String title;
+    private final String title;
     private int duration = 0;
 
     public ConferenceTalk(String title) {
