@@ -26,6 +26,10 @@ public class Session {
                             int timeAvailable){
         int greatCount = 0;
 
+        if (indexOfOverflowTalk == 0) {
+            Collection.shuffle(allTalks);
+        }
+
         for (int i = indexOfOverflowTalk; i < allTalks.size(); i++) {
             totalDuration += allTalks.get(i).getDuration();
 
@@ -34,10 +38,13 @@ public class Session {
             } else if (i <= allTalks.size() - 1) {
                 if (greatCount > allTalks.size() / 4) {
                     Collection.shuffle(allTalks);
+                    talks.clear();
+                    indexOfOverflowTalks.clear();
                     fillSession(talks, allTalks, indexOfOverflowTalks, 0, 0, timeAvailable);
                 } else {
-                    indexOfOverflowTalk = temp.get(0);
-                    fillSession(talks, allTalks, new ArrayList()<>, totalDuration, indexOfOverflowTalk, timeAvailable);
+                    int j = temp.get(0);
+                    talks.clear();
+                    fillSession(talks, allTalks, new ArrayList()<>, totalDuration, j, timeAvailable);
                 }
             } else {
                 temp.add(i);
