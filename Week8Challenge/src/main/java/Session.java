@@ -11,7 +11,7 @@ public class Session {
     private ArrayList<ConferenceTalk> talks;
 
     public ArrayList<ConferenceTalk> getTalks() {
-        return talks;
+        return this.talks;
     }
 
     public Session(int start, int end){
@@ -21,20 +21,28 @@ public class Session {
         timeLeft = (end - start)*60;
     }
 
-    public void fillSession(List<ConferenceTalk> allTalks){
-        int minDur = Integer.MAX_VALUE;
-        while(timeLeft > 0 || !allTalks.isEmpty() || timeLeft >= minDur){
-            for (ConferenceTalk talk: allTalks) {
-                int currDur = talk.getDuration();
-                if(currDur <= timeLeft){
-                    talks.add(talk);
-                    timeLeft-= currDur;
-                    allTalks.remove(talk);
-                }else{
-                    if(currDur < minDur){
-                        minDur = currDur;
-                    }
+    public void fillSession(List<ConferenceTalk> talks, List<ConferenceTalk> allTalks,
+                            List<Integer> indexOfOverflowTalks, int totalDuration, int indexOfOverflowTalk,
+                            int timeAvailable){
+        int greatCount = 0;
+
+        for (int i = indexOfOverflowTalk; i < allTalks.size(); i++) {
+            totalDuration += allTalks.get(i).getDuration();
+
+            if (totalDuration <= timeAvailable) {
+                talks.add(allTalks.get(i));
+            } else if (i <= allTalks.size() - 1) {
+                if (greatCount > allTalks.size() / 4) {
+                    Collection.shuffle(allTalks);
+                    fillSession(talks, allTalks, indexOfOverflowTalks, 0, 0, timeAvailable);
+                } else {
+                    indexOfOverflowTalk = temp.get(0);
+                    fillSession(talks, allTalks, new ArrayList()<>, totalDuration, indexOfOverflowTalk, timeAvailable);
                 }
+            } else {
+                temp.add(i);
+                totalDuration -= allTalks.get(i).getDuration();
+                greatCount++;
             }
         }
     }
