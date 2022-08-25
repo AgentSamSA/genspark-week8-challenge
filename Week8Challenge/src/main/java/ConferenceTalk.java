@@ -4,6 +4,14 @@ public class ConferenceTalk {
 
     public ConferenceTalk(String title) {
         this.title = title;
+
+        if (title.endsWith("lightning")) { //lightning talks are 5 minutes long
+            this.duration = 5;
+        } else {
+            String[] titleArr = title.split("\\s+");
+            String minutes = titleArr[titleArr.length - 1].replaceAll("[^0-9]", "");
+            this.duration = Integer.parseInt(minutes);
+        }
     }
 
     public String getTitle() {
@@ -12,14 +20,5 @@ public class ConferenceTalk {
 
     public int getDuration() {
         return this.duration;
-    }
-    public void setDuration() {
-        if (title.endsWith("lightning")) { //lightning talks are 5 minutes long
-            this.duration = 5;
-        } else {
-            String[] titleArr = title.split("\\s+");
-            String minutes = titleArr[titleArr.length - 1].replaceAll("[^0-9]", "");
-            this.duration = Integer.parseInt(minutes);
-        }
     }
 }
