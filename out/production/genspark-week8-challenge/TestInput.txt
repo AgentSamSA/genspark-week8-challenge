@@ -1,0 +1,19 @@
+Java and Containers Make it Awesome !    45min
+Java: Did you Know That?    30min
+Fun path to Java SE 11 Developer Certifications    60min
+Memory Efficient Java    45min
+Discover Modern Java    45min
+Ten Cool Things you might not know about the OpenJDK Java Virtual Machine    30min
+Effective Java SE 9 through 14 APIs/Lang features, makes your life easier.    60min
+This Ain\u2019t Your Parents Java    30min
+Improving Startup for Java Analytical Workload    60min
+Human Readable Javascript    30min
+Vanilla.js: Modern 1st Party JavaScript    30min
+Property-Based Testing in Java    30min
+Functional Programming in Java, Groovy, and Kotlin    45min
+An Open Future for Java in the Cloud    60min
+10 Java Security Practices They Didn't Teach You In School    45min
+Future of Java Panel    lightning
+Stretching the Service Mesh from Java to Beyond    30min
+Modern Java Clients with JavaFX: The Definitive Guide    45min
+Keeping Up With Java: Look At All These New Features!    60min

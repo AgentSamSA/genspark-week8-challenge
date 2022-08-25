@@ -1,25 +1,37 @@
 public class ConferenceTalk {
-    private final String title;
-    private int duration = 0;
+    private String title;
+    private Integer duration;
 
-    public ConferenceTalk(String title) {
+    public ConferenceTalk() {
+
+    }
+
+    public ConferenceTalk(String title, Integer duration) {
         this.title = title;
+        this.duration = duration;
     }
 
     public String getTitle() {
-        return this.title;
+        return title;
     }
 
-    public int getDuration() {
-        return this.duration;
+    public void setTitle(String title) {
+        this.title = title;
     }
-    public void setDuration() {
-        if (title.endsWith("lightning")) { //lightning talks are 5 minutes long
-            this.duration = 5;
-        } else {
-            String[] titleArr = title.split("\\s+");
-            String minutes = titleArr[titleArr.length - 1].replaceAll("[^0-9]", "");
-            this.duration = Integer.parseInt(minutes);
-        }
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
+
+    @Override
+    public String toString() {
+        return "ConferenceTalk{" +
+                "title='" + title + '\'' +
+                ", duration=" + duration +
+                '}';
     }
 }
