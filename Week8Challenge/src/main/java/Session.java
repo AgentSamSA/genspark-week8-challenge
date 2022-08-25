@@ -1,8 +1,5 @@
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Session {
     private int start;
@@ -21,37 +18,22 @@ public class Session {
         timeLeft = (end - start)*60;
     }
 
-    public void fillSession(List<ConferenceTalk> talks, List<ConferenceTalk> allTalks,
-                            List<Integer> indexOfOverflowTalks, int totalDuration, int indexOfOverflowTalk,
-                            int timeAvailable){
-        int greatCount = 0;
+    public List<ConferenceTalk> fillSession(List<ConferenceTalk> allTalks) {
+        int minDuration = Integer.MAX_VALUE;
+        while (timeLeft > 0 && !allTalks.isEmpty() && timeLeft < minDuration) {
+            minDuration =
+                    allTalks.stream().min(Comparator.comparingInt(ConferenceTalk::getDuration)).orElse(new ConferenceTalk("")).getDuration();
+            for (ConferenceTalk talk : allTalks) {
+                int currDuration = talk.getDuration();
 
-        if (indexOfOverflowTalk == 0) {
-            Collection.shuffle(allTalks);
-        }
-
-        for (int i = indexOfOverflowTalk; i < allTalks.size(); i++) {
-            totalDuration += allTalks.get(i).getDuration();
-
-            if (totalDuration <= timeAvailable) {
-                talks.add(allTalks.get(i));
-            } else if (i <= allTalks.size() - 1) {
-                if (greatCount > allTalks.size() / 4) {
-                    Collection.shuffle(allTalks);
-                    talks.clear();
-                    indexOfOverflowTalks.clear();
-                    fillSession(talks, allTalks, indexOfOverflowTalks, 0, 0, timeAvailable);
-                } else {
-                    int j = temp.get(0);
-                    talks.clear();
-                    fillSession(talks, allTalks, new ArrayList()<>, totalDuration, j, timeAvailable);
+                if ( currDuration <= timeLeft) {
+                    talks.add(talk);
+                    timeLeft -= currDuration;
+                    allTalks.remove(talk);
                 }
-            } else {
-                temp.add(i);
-                totalDuration -= allTalks.get(i).getDuration();
-                greatCount++;
             }
         }
+        return talks;
     }
 
 

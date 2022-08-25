@@ -1,6 +1,6 @@
 public class ConferenceTalk {
-    private final String title;
-    private int duration = 0;
+    private String title;
+    private int duration;
 
     public ConferenceTalk(String title) {
         this.title = title;
