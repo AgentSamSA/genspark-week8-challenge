@@ -7,14 +7,14 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<String> input = Collections.emptyList();
+        List<String> input;
 
         input = readFile();
 
         //do stuff to file here
 
         //output talks to console and to a different file
-        System.out.println(input);
+        input.forEach(n -> System.out.println(n));
         //writeFile(output);
     }
 
@@ -22,7 +22,7 @@ public class Main {
         List<String> fileInput = Collections.emptyList();
 
         try {
-            fileInput = Files.readAllLines(Paths.get("files/TalkList.txt"), StandardCharsets.UTF_8);
+            fileInput = Files.readAllLines(Paths.get("src/files/TalkList.txt"), StandardCharsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
         }

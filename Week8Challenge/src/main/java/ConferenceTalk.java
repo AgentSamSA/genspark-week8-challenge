@@ -1,6 +1,12 @@
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 public class ConferenceTalk {
     private String title;
     private int duration;
+
+    private LocalTime start;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
     public ConferenceTalk(String title) {
         this.title = title;
@@ -25,5 +31,10 @@ public class ConferenceTalk {
 
     public int getDuration() {
         return this.duration;
+    }
+
+    @Override
+    public String toString() {
+        return start.format(formatter) + "\t" + title;
     }
 }

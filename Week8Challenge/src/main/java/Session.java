@@ -6,9 +6,9 @@ public class Session {
     private LocalTime start;
     private LocalTime end;
     private int timeLeft;
-    private ArrayList<ConferenceTalk> talks;
+    private List<ConferenceTalk> talks;
 
-    public ArrayList<ConferenceTalk> getTalks() {
+    public List<ConferenceTalk> getTalks() {
         return this.talks;
     }
 
@@ -17,6 +17,13 @@ public class Session {
         this.end = end;
         this.start = start;
         timeLeft = (end.getHour() - start.getHour())*60;
+    }
+
+    public Session(LocalTime start, LocalTime end, List<ConferenceTalk> allTalks){
+        this.end = end;
+        this.start = start;
+        timeLeft = (end.getHour() - start.getHour())*60;
+        talks = fillSession(allTalks);
     }
 
     public List<ConferenceTalk> fillSession(List<ConferenceTalk> allTalks) {
