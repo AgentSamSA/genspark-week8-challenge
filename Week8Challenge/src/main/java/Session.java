@@ -19,8 +19,8 @@ public class Session {
     }
 
     public List<ConferenceTalk> fillSession(List<ConferenceTalk> allTalks) {
-        int minDuration = Integer.MAX_VALUE;
-        while (timeLeft > 0 && !allTalks.isEmpty() && timeLeft < minDuration) {
+        int minDuration = allTalks.get(0).getDuration();
+        while (timeLeft > 0 && !allTalks.isEmpty() && timeLeft >= minDuration) {
             minDuration =
                     allTalks.stream().min(Comparator.comparingInt(ConferenceTalk::getDuration)).orElse(new ConferenceTalk("")).getDuration();
             for (ConferenceTalk talk : allTalks) {
