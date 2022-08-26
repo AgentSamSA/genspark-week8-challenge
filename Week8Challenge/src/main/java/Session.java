@@ -5,6 +5,8 @@ import java.util.*;
 public class Session {
     private LocalTime start;
     private LocalTime end;
+
+    private LocalTime currentTime;
     private int timeLeft;
     private List<ConferenceTalk> talks;
 
@@ -16,12 +18,14 @@ public class Session {
         talks = new ArrayList<>();
         this.end = end;
         this.start = start;
+        this.currentTime = this.start;
         timeLeft = (end.getHour() - start.getHour())*60;
     }
 
     public Session(LocalTime start, LocalTime end, List<ConferenceTalk> allTalks){
         this.end = end;
         this.start = start;
+        this.currentTime = this.start;
         timeLeft = (end.getHour() - start.getHour())*60;
         talks = fillSession(allTalks);
     }
@@ -37,6 +41,8 @@ public class Session {
                 if ( currDuration <= timeLeft) {
                     talks.add(talk);
                     timeLeft -= currDuration;
+                    talk.setStart(currentTime);
+                    currentTime = currentTime.plusMinutes(talk.getDuration());
                     allTalks.remove(talk);
                 }
             }
@@ -65,4 +71,13 @@ public class Session {
         this.end = end;
     }
 
+    @Override
+    public String toString() { // need to test this!
+        StringBuilder sessionList = new StringBuilder();
+
+        for (ConferenceTalk talk : talks) {
+            sessionList.append(talk).append("\n");
+        }
+        return sessionList.toString();
+    }
 }

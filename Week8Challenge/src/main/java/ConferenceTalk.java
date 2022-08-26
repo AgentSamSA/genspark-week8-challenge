@@ -20,7 +20,8 @@ public class ConferenceTalk {
         }
     }
 
-    public ConferenceTalk(String title, int duration) {
+    public ConferenceTalk(LocalTime start, String title, int duration) {
+        this.start = start;
         this.title = title;
         this.duration = duration;
     }
@@ -31,6 +32,10 @@ public class ConferenceTalk {
 
     public int getDuration() {
         return this.duration;
+    }
+
+    public void setStart(LocalTime start) {
+        this.start = start;
     }
 
     @Override
