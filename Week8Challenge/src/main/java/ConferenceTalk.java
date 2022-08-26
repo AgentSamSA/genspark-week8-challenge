@@ -10,6 +10,7 @@ public class ConferenceTalk {
 
     public ConferenceTalk(String title) {
         this.title = title;
+        this.start = LocalTime.now();
 
         if (title.endsWith("lightning")) { //lightning talks are 5 minutes long
             this.duration = 5;

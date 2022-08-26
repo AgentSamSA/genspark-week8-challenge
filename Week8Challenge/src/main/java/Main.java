@@ -15,8 +15,17 @@ public class Main {
         //do stuff to file here
 
         //output talks to console and to a different file
-        //allTalks.forEach(n -> System.out.println(n));
+        //allTalks.forEach(System.out::println);
         //writeFile(output);
+
+        List<Track> conferenceSchedule = new ArrayList<>();
+
+        while (!allTalks.isEmpty()) {
+            Track track = new Track(allTalks);
+            conferenceSchedule.add(track);
+        }
+
+        conferenceSchedule.forEach(System.out::println);
     }
 
     public static List<ConferenceTalk> readFile() {

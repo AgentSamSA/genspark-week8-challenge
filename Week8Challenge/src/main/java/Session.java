@@ -8,45 +8,48 @@ public class Session {
 
     private LocalTime currentTime;
     private int timeLeft;
-    private List<ConferenceTalk> talks;
+    private List<ConferenceTalk> talks = new ArrayList<>();
 
     public List<ConferenceTalk> getTalks() {
         return this.talks;
     }
 
     public Session(LocalTime start, LocalTime end){
-        talks = new ArrayList<>();
+        this.talks = new ArrayList<>();
         this.end = end;
         this.start = start;
         this.currentTime = this.start;
-        timeLeft = (end.getHour() - start.getHour())*60;
+        this.timeLeft = (end.getHour() - start.getHour())*60;
     }
 
     public Session(LocalTime start, LocalTime end, List<ConferenceTalk> allTalks){
         this.end = end;
         this.start = start;
         this.currentTime = this.start;
-        timeLeft = (end.getHour() - start.getHour())*60;
-        talks = fillSession(allTalks);
+        this.timeLeft = (end.getHour() - start.getHour())*60;
+        this.talks = fillSession(allTalks);
     }
 
     public List<ConferenceTalk> fillSession(List<ConferenceTalk> allTalks) {
         int minDuration = allTalks.get(0).getDuration();
+        List<ConferenceTalk> addedTalks = new ArrayList<>();
+
         while (timeLeft > 0 && !allTalks.isEmpty() && timeLeft >= minDuration) {
             minDuration =
                     allTalks.stream().min(Comparator.comparingInt(ConferenceTalk::getDuration)).get().getDuration();
             for (ConferenceTalk talk : allTalks) {
                 int currDuration = talk.getDuration();
 
-                if ( currDuration <= timeLeft) {
+                if ( currDuration <= timeLeft && !addedTalks.contains(talk)) {
                     talks.add(talk);
+                    addedTalks.add(talk);
                     timeLeft -= currDuration;
                     talk.setStart(currentTime);
                     currentTime = currentTime.plusMinutes(talk.getDuration());
-                    allTalks.remove(talk);
                 }
             }
         }
+        allTalks.removeAll(addedTalks);
         return talks;
     }
 
