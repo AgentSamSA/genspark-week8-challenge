@@ -15,12 +15,8 @@ public class Track {
         this.afternoon = afternoon;
     }
 
-    public Track (List<String> allTalks) {
-        this.allConferenceTalks = new ArrayList<>();
-        for (String talk : allTalks) {
-            ConferenceTalk conferenceTalk = new ConferenceTalk(talk);
-            allConferenceTalks.add(conferenceTalk);
-        }
+    public Track (List<ConferenceTalk> allTalks) {
+        this.allConferenceTalks = allTalks;
         this.morning = new Session(LocalTime.parse("09:00"), LocalTime.parse("12:00"), allConferenceTalks);
         this.afternoon = new Session(LocalTime.parse("13:00"), LocalTime.parse("17:00"), allConferenceTalks);
     }
