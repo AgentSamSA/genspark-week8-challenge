@@ -14,6 +14,11 @@ public class ConferenceTalk {
         }
     }
 
+    public ConferenceTalk(String title, int duration) {
+        this.title = title;
+        this.duration = duration;
+    }
+
     public String getTitle() {
         return this.title;
     }
