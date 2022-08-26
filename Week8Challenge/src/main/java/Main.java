@@ -7,27 +7,32 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<String> input;
+        List<ConferenceTalk> allTalks;
 
-        input = readFile();
+        allTalks = readFile();
 
         //do stuff to file here
 
         //output talks to console and to a different file
-        input.forEach(n -> System.out.println(n));
+        allTalks.forEach(n -> System.out.println(n));
         //writeFile(output);
     }
 
-    public static List<String> readFile() {
+    public static List<ConferenceTalk> readFile() {
         List<String> fileInput = Collections.emptyList();
+        List<ConferenceTalk> allTalks = Collections.emptyList();
 
         try {
             fileInput = Files.readAllLines(Paths.get("src/files/TalkList.txt"), StandardCharsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+        for (String i : fileInput) {
+            allTalks.add(new ConferenceTalk(i));
+        }
 
-        return fileInput;
+        return allTalks;
     }
 
     public static void writeFile(List<Track> output) {
