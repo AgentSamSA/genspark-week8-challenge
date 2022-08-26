@@ -22,7 +22,7 @@ public class Session {
         int minDuration = allTalks.get(0).getDuration();
         while (timeLeft > 0 && !allTalks.isEmpty() && timeLeft >= minDuration) {
             minDuration =
-                    allTalks.stream().min(Comparator.comparingInt(ConferenceTalk::getDuration)).orElse(new ConferenceTalk("")).getDuration();
+                    allTalks.stream().min(Comparator.comparingInt(ConferenceTalk::getDuration)).get().getDuration();
             for (ConferenceTalk talk : allTalks) {
                 int currDuration = talk.getDuration();
 
