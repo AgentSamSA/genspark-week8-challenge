@@ -1,9 +1,10 @@
 import java.lang.reflect.Array;
+import java.time.LocalTime;
 import java.util.*;
 
 public class Session {
-    private int start;
-    private int end;
+    private LocalTime start;
+    private LocalTime end;
     private int timeLeft;
     private ArrayList<ConferenceTalk> talks;
 
@@ -11,18 +12,18 @@ public class Session {
         return this.talks;
     }
 
-    public Session(int start, int end){
+    public Session(LocalTime start, LocalTime end){
         talks = new ArrayList<>();
         this.end = end;
         this.start = start;
-        timeLeft = (end - start)*60;
+        timeLeft = (end.getHour() - start.getHour())*60;
     }
 
     public List<ConferenceTalk> fillSession(List<ConferenceTalk> allTalks) {
-        int minDuration = Integer.MAX_VALUE;
-        while (timeLeft > 0 && !allTalks.isEmpty() && timeLeft < minDuration) {
+        int minDuration = allTalks.get(0).getDuration();
+        while (timeLeft > 0 && !allTalks.isEmpty() && timeLeft >= minDuration) {
             minDuration =
-                    allTalks.stream().min(Comparator.comparingInt(ConferenceTalk::getDuration)).orElse(new ConferenceTalk("")).getDuration();
+                    allTalks.stream().min(Comparator.comparingInt(ConferenceTalk::getDuration)).get().getDuration();
             for (ConferenceTalk talk : allTalks) {
                 int currDuration = talk.getDuration();
 
@@ -41,19 +42,19 @@ public class Session {
         return this.timeLeft;
     }
 
-    public int getStart() {
+    public LocalTime getStart() {
         return this.start;
     }
 
-    public void setStart(int start) {
+    public void setStart(LocalTime start) {
         this.start = start;
     }
 
-    public int getEnd() {
+    public LocalTime getEnd() {
         return this.end;
     }
 
-    public void setEnd(int end) {
+    public void setEnd(LocalTime end) {
         this.end = end;
     }
 
