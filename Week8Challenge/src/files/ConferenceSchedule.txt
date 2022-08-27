@@ -1,26 +1,23 @@
-09:00	Java and Containers - Make it Awesome !	45min
-09:45	Java: Did you Know That? 	30min
-10:15	Fun path to Java SE 11 Developer Certifications 	60min
-11:15	Memory Efficient Java 	45min
-
-12:00	Lunch
-13:00	Discover Modern Java 	45min
-13:45	Ten Cool Things you might not know about the OpenJDK Java Virtual Machine 	30min
-14:15	Effective Java SE 9 through 14 APIs/Lang features, make your life easier. 	60min
-15:15	This Ain/u2019t Your Parents Java 	30min
-15:45	Improving Startup for Java Analytical Workload 	60min
-16:45	Future of Java Panel 	lightning
-
-17:00	Networking Event09:00	Human Readable JavaScript 		30min
-09:30	Vanilla.js: Modern 1st Party JavaScript 	30min
-10:00	Property-Based Testing in Java 	30min
-10:30	Functional Programing in Java, Groovy, and Kotlin 	45min
-11:15	10 Java Security Practices They Didn’t Teach You In School 	45min
-
-12:00	Lunch
-13:00	An Open Future for Java in the Cloud 	60min
-14:00	Stretching the Service Mesh from Java to Beyond 	30min
-14:30	Modern Java Clients with JavaFX: The Definitive Guide 	45min
-15:15	Keeping Up With Java: Look At All These New Features! 	60min
-
-17:00	Networking Event
+09:00 AM	Java and Containers - Make it Awesome !	45min
+09:45 AM	Java: Did you Know That? 	30min
+10:15 AM	Fun path to Java SE 11 Developer Certifications 	60min
+11:15 AM	Memory Efficient Java 	45min
+12:00 PM	Lunch
+01:00 PM	Discover Modern Java 	45min
+01:45 PM	Ten Cool Things you might not know about the OpenJDK Java Virtual Machine 	30min
+02:15 PM	Effective Java SE 9 through 14 APIs/Lang features, make your life easier. 	60min
+03:15 PM	This Ain/u2019t Your Parents Java 	30min
+03:45 PM	Improving Startup for Java Analytical Workload 	60min
+04:45 PM	Future of Java Panel 	lightning
+05:00 PM	Networking Event
+09:00 AM	Human Readable JavaScript 		30min
+09:30 AM	Vanilla.js: Modern 1st Party JavaScript 	30min
+10:00 AM	Property-Based Testing in Java 	30min
+10:30 AM	Functional Programing in Java, Groovy, and Kotlin 	45min
+11:15 AM	10 Java Security Practices They Didn’t Teach You In School 	45min
+12:00 PM	Lunch
+01:00 PM	An Open Future for Java in the Cloud 	60min
+02:00 PM	Stretching the Service Mesh from Java to Beyond 	30min
+02:30 PM	Modern Java Clients with JavaFX: The Definitive Guide 	45min
+03:15 PM	Keeping Up With Java: Look At All These New Features! 	60min
+05:00 PM	Networking Event

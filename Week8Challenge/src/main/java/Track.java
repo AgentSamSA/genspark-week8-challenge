@@ -19,6 +19,6 @@ public class Track {
 
     @Override
     public String toString() {
-        return morning + "\n" + lunch + "\n" + afternoon + "\n" + networkingEvent;
+        return morning.toString() + lunch + "\n" + afternoon + networkingEvent + "\n";
     }
 }

@@ -6,7 +6,7 @@ public class ConferenceTalk {
     private int duration;
 
     private LocalTime start;
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
 
     public ConferenceTalk(String title) {
         this.title = title;
