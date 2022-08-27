@@ -21,7 +21,7 @@ public class Main {
         }
 
         conferenceSchedule.forEach(System.out::println);
-        //writeFile(conferenceSchedule);
+        writeFile(conferenceSchedule);
     }
 
     public static List<ConferenceTalk> readFile() {
