@@ -34,10 +34,15 @@ public class Session {
         List<ConferenceTalk> addedTalks = new ArrayList<>();
 
         while (timeLeft > 0 && !allTalks.isEmpty() && timeLeft >= minDuration) {
-            minDuration =
-                    allTalks.stream().min(Comparator.comparingInt(ConferenceTalk::getDuration)).get().getDuration();
+
             for (ConferenceTalk talk : allTalks) {
                 int currDuration = talk.getDuration();
+
+                if (timeLeft == 0)
+                    break;
+                
+                minDuration =
+                        allTalks.stream().min(Comparator.comparingInt(ConferenceTalk::getDuration)).get().getDuration();
 
                 if ( currDuration <= timeLeft && !addedTalks.contains(talk)) {
                     talks.add(talk);
