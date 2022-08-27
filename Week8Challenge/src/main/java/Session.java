@@ -32,6 +32,7 @@ public class Session {
     public List<ConferenceTalk> fillSession(List<ConferenceTalk> allTalks) {
         int minDuration = allTalks.get(0).getDuration();
         List<ConferenceTalk> addedTalks = new ArrayList<>();
+        ArrayList<ConferenceTalk> updatingMinDurationList = new ArrayList<>(allTalks);
 
         while (timeLeft > 0 && !allTalks.isEmpty() && timeLeft >= minDuration) {
 
@@ -40,9 +41,11 @@ public class Session {
 
                 if (timeLeft == 0)
                     break;
-                
+
+                updatingMinDurationList.removeAll(addedTalks);
+
                 minDuration =
-                        allTalks.stream().min(Comparator.comparingInt(ConferenceTalk::getDuration)).get().getDuration();
+                        updatingMinDurationList.stream().min(Comparator.comparingInt(ConferenceTalk::getDuration)).get().getDuration();
 
                 if ( currDuration <= timeLeft && !addedTalks.contains(talk)) {
                     talks.add(talk);
