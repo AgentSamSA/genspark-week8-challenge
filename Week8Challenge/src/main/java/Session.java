@@ -1,39 +1,62 @@
-import java.lang.reflect.Array;
 import java.time.LocalTime;
 import java.util.*;
 
 public class Session {
     private LocalTime start;
     private LocalTime end;
-    private int timeLeft;
-    private ArrayList<ConferenceTalk> talks;
 
-    public ArrayList<ConferenceTalk> getTalks() {
+    private LocalTime currentTime;
+    private int timeLeft;
+    private List<ConferenceTalk> talks = new ArrayList<>();
+
+    public List<ConferenceTalk> getTalks() {
         return this.talks;
     }
 
     public Session(LocalTime start, LocalTime end){
-        talks = new ArrayList<>();
+        this.talks = new ArrayList<>();
         this.end = end;
         this.start = start;
-        timeLeft = (end.getHour() - start.getHour())*60;
+        this.currentTime = this.start;
+        this.timeLeft = (end.getHour() - start.getHour())*60;
+    }
+
+    public Session(LocalTime start, LocalTime end, List<ConferenceTalk> allTalks){
+        this.end = end;
+        this.start = start;
+        this.currentTime = this.start;
+        this.timeLeft = (end.getHour() - start.getHour())*60;
+        this.talks = fillSession(allTalks);
     }
 
     public List<ConferenceTalk> fillSession(List<ConferenceTalk> allTalks) {
         int minDuration = allTalks.get(0).getDuration();
+        List<ConferenceTalk> addedTalks = new ArrayList<>();
+        ArrayList<ConferenceTalk> updatingMinDurationList = new ArrayList<>(allTalks);
+
         while (timeLeft > 0 && !allTalks.isEmpty() && timeLeft >= minDuration) {
-            minDuration =
-                    allTalks.stream().min(Comparator.comparingInt(ConferenceTalk::getDuration)).get().getDuration();
+
             for (ConferenceTalk talk : allTalks) {
                 int currDuration = talk.getDuration();
 
-                if ( currDuration <= timeLeft) {
+                if (timeLeft == 0)
+                    break;
+
+                updatingMinDurationList.removeAll(addedTalks);
+
+                minDuration =
+                        updatingMinDurationList.stream().min(Comparator.comparingInt(ConferenceTalk::getDuration)).get().getDuration();
+
+                if ( currDuration <= timeLeft && !addedTalks.contains(talk)) {
                     talks.add(talk);
+                    addedTalks.add(talk);
                     timeLeft -= currDuration;
-                    allTalks.remove(talk);
+                    talk.setStart(currentTime);
+                    currentTime = currentTime.plusMinutes(talk.getDuration());
                 }
             }
         }
+        allTalks.removeAll(addedTalks);
         return talks;
     }
 
@@ -58,4 +81,13 @@ public class Session {
         this.end = end;
     }
 
+    @Override
+    public String toString() { // need to test this!
+        StringBuilder sessionList = new StringBuilder();
+
+        for (ConferenceTalk talk : talks) {
+            sessionList.append(talk).append("\n");
+        }
+        return sessionList.toString();
+    }
 }

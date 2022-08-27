@@ -1,9 +1,16 @@
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 public class ConferenceTalk {
     private String title;
     private int duration;
 
+    private LocalTime start;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
+
     public ConferenceTalk(String title) {
         this.title = title;
+        this.start = LocalTime.now();
 
         if (title.endsWith("lightning")) { //lightning talks are 5 minutes long
             this.duration = 5;
@@ -14,7 +21,8 @@ public class ConferenceTalk {
         }
     }
 
-    public ConferenceTalk(String title, int duration) {
+    public ConferenceTalk(LocalTime start, String title, int duration) {
+        this.start = start;
         this.title = title;
         this.duration = duration;
     }
@@ -25,5 +33,14 @@ public class ConferenceTalk {
 
     public int getDuration() {
         return this.duration;
+    }
+
+    public void setStart(LocalTime start) {
+        this.start = start;
+    }
+
+    @Override
+    public String toString() {
+        return start.format(formatter) + "\t" + title;
     }
 }
