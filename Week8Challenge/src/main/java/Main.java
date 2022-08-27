@@ -11,16 +11,9 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         List<ConferenceTalk> allTalks;
+        List<Track> conferenceSchedule = new ArrayList<>();
 
         allTalks = readFile();
-
-        //do stuff to file here
-
-        //output talks to console and to a different file
-        //allTalks.forEach(System.out::println);
-        //writeFile(output);
-
-        List<Track> conferenceSchedule = new ArrayList<>();
 
         while (!allTalks.isEmpty()) {
             Track track = new Track(allTalks);
