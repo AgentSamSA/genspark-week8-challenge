@@ -57,6 +57,7 @@ public class Session {
             }
         }
         allTalks.removeAll(addedTalks);
+        System.out.println("sout: "+talks);
         return talks;
     }
 
