@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -26,6 +28,7 @@ public class Main {
         }
 
         conferenceSchedule.forEach(System.out::println);
+        //writeFile(conferenceSchedule);
     }
 
     public static List<ConferenceTalk> readFile() {
@@ -46,6 +49,26 @@ public class Main {
     }
 
     public static void writeFile(List<Track> output) {
+        try {
+            File myObj = new File("src/files/ConferenceSchedule.txt");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
 
+        try {
+            FileWriter myWriter = new FileWriter("src/files/ConferenceSchedule.txt");
+            for (Track n : output) {
+                myWriter.write(n.toString());
+            }
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 }
